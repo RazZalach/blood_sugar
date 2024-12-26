@@ -38,5 +38,20 @@ async function createFakeReading(req, res) {
     res.status(500).json({ error: 'Failed to generate reading' });
   }
 }
+// Controller to get the latest blood sugar readings
+async function getLatestReadings(req, res) {
+    try {
+      const count = parseInt(req.body.count, 10) || 10; // מספר הקריאות לבקשה, ברירת מחדל 10
+      const readings = await BloodSugar.find()
+        .sort({ createdAt: -1 }) // מסדר לפי הזמן מהעדכני ביותר
+        .limit(count); // מגביל לפי כמות המבוקשת
+  
+      res.status(200).json(readings); // מחזירים את הקריאות
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch readings' });
+    }
+  }
+  
+module.exports = { createFakeReading, getLatestReadings };
 
-module.exports = { createFakeReading };
+

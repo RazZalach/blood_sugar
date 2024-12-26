@@ -1,8 +1,12 @@
 const express = require('express');
-const router = express.Router();
-const { createFakeReading } = require('../controller/bloodSugar');
+const { createFakeReading, getLatestReadings } = require('../controller/bloodSugar');
 
-// Route to create a new blood sugar reading
-router.post('/create', createFakeReading);
+const router = express.Router();
+
+// Route to create a fake blood sugar reading
+router.post('/reading', createFakeReading);
+
+// Route to get the latest blood sugar readings
+router.post('/readings', getLatestReadings);
 
 module.exports = router;
