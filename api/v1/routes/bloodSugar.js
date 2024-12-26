@@ -4,7 +4,7 @@ const { createFakeReading, getLatestReadings } = require('../controller/bloodSug
 const router = express.Router();
 
 // Route to create a fake blood sugar reading
-router.post('/reading', createFakeReading);
+router.post('/create', createFakeReading);
 
 // Route to get the latest blood sugar readings
 router.post('/readings', getLatestReadings);
